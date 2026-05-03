@@ -35,11 +35,18 @@ export default async function handler(req, res) {
 
         const data = await response.json();
 
-        // 3. ส่งข้อมูลกลับไปให้ Unity (ถ้า Discord ตอบกลับมาผิดพลาด จะส่ง Error ของ Discord ไปให้เลย)
-        return res.status(response.status).json(data);
+        // --- แก้ไขส่วนนี้ ---
+        if (response.ok) {
+            return res.status(200).json({
+                token: data.access_token, // เปลี่ยนชื่อจาก access_token เป็น token ให้ Unity อ่านออก
+                expires_in: data.expires_in
+            });
+        } else {
+            return res.status(response.status).json(data);
+        }
+        // ------------------
 
     } catch (err) {
-        // 4. ถ้าโค้ดพังในส่วนอื่น ให้ส่ง Error Message ออกมา
         return res.status(500).json({ error: err.message });
     }
 }
