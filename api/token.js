@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
     // 1. ตรวจสอบ Method
-    /*if (req.method !== 'POST') {
+    if (req.method !== 'POST') {
         return res.status(405).json({ error: 'ใช้ POST เท่านั้น' });
-    }*/
+    }
 
     try {
         const { code } = req.body;
