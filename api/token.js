@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
     try {
         const { code } = req.body;
-        const CLIENT_ID = '1488362270487539722';
+        const CLIENT_ID = '1499862278487539722';
         const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
 
         // 2. เช็คว่าตั้งค่า Environment Variable หรือยัง
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
                 grant_type: 'authorization_code',
-                code: code,
+                code: code.toString(), // ตรวจสอบว่า code ไม่เป็น undefined
                 redirect_uri: 'https://game-github-io-sepia.vercel.app/'
             }),
         });
