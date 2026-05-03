@@ -123,11 +123,11 @@ async function handleUnityBuild() {
             Dynamic: 3,
             Max: 4
         };
-        let viewportWidth = "[[[ WIDTH ]]]§";
-        let viewportHeight = "[[[ HEIGHT ]]]§";
-        let desktopResolution = "[[[ DESKTOP_RESOLUTION ]]]§";
-        let mobileResolution = "[[[ MOBILE_RESOLUTION ]]]§";
-        let browserResolution = "[[[ BROWSER_RESOLUTION ]]]§";
+        let viewportWidth = "[[[ WIDTH ]]] 1920§";
+        let viewportHeight = "[[[ HEIGHT ]]] 1080§";
+        let desktopResolution = "[[[ DESKTOP_RESOLUTION ]]] 4§";
+        let mobileResolution = "[[[ MOBILE_RESOLUTION ]]] 4§";
+        let browserResolution = "[[[ BROWSER_RESOLUTION ]]] 3§";
         let resolution;
         viewportWidth = Number(parseVariable(viewportWidth));
         viewportHeight = Number(parseVariable(viewportHeight));
