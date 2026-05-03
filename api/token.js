@@ -1,14 +1,21 @@
 export default async function handler(req, res) {
+    // 1. ตรวจสอบ Method
     if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
+        return res.status(405).json({ error: 'ใช้ POST เท่านั้น' });
     }
 
-    const { code } = req.body;
-    // ดึงค่า Client ID จากโค้ด Unity ของคุณ และ Secret จาก Vercel Environment Variables
-    const CLIENT_ID = '1488362270487539722'; // ตามที่เห็นในรูปโค้ดของคุณ
-    const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET; 
-
     try {
+        const { code } = req.body;
+        const CLIENT_ID = '1488362270487539722';
+        const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
+
+        // 2. เช็คว่าตั้งค่า Environment Variable หรือยัง
+        if (!CLIENT_SECRET) {
+            return res.status(500).json({ 
+                error: 'ยังไม่ได้ตั้งค่า DISCORD_CLIENT_SECRET ใน Vercel Settings' 
+            });
+        }
+
         const response = await fetch('https://discord.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -17,12 +24,17 @@ export default async function handler(req, res) {
                 client_secret: CLIENT_SECRET,
                 grant_type: 'authorization_code',
                 code: code,
+                redirect_uri: 'https://vercel.app' 
             }),
         });
 
         const data = await response.json();
-        return res.status(200).json(data);
-    } catch (error) {
-        return res.status(500).json({ error: 'Failed to fetch token' });
+        
+        // 3. ส่งข้อมูลกลับไปให้ Unity (ถ้า Discord ตอบกลับมาผิดพลาด จะส่ง Error ของ Discord ไปให้เลย)
+        return res.status(response.status).json(data);
+
+    } catch (err) {
+        // 4. ถ้าโค้ดพังในส่วนอื่น ให้ส่ง Error Message ออกมา
+        return res.status(500).json({ error: err.message });
     }
 }
