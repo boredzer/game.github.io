@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
     // 1. ตรวจสอบ Method
-    if (req.method !== 'POST') {
+    /*if (req.method !== 'POST') {
         return res.status(405).json({ error: 'ใช้ POST เท่านั้น' });
-    }
+    }*/
 
     try {
         const { code } = req.body;
@@ -34,6 +34,7 @@ export default async function handler(req, res) {
         });
 
         const data = await response.json();
+        console.log("Discord Response:", data); // ดูว่า Discord ตอบอะไรกลับมา
 
         // --- แก้ไขส่วนนี้ ---
         if (response.ok) {
