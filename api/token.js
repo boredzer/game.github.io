@@ -16,7 +16,7 @@ export default async function handler(req, res) {
             });
         }
 
-        const response = await fetch('https://discord.com', {
+        const response = await fetch('https://discord.com/api/oauth2/token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
