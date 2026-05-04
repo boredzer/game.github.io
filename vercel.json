@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.unity3d.com https://*.unity.com https://*.discord.com https://*.discordapp.com; connect-src 'self' https://*.unity3d.com https://*.unity.com wss://*.unity3d.com wss://://unity3d.com https://*.discord.com https://*.discordapp.com https://unity.com https://unity.com https://unity.com;"
+          "value": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.unity3d.com https://*.unity.com https://*.discord.com https://*.discordapp.com; connect-src 'self' https://*.unity3d.com https://*.unity.com wss://*.unity3d.com wss://://unity3d.com https://*.discord.com https://*.discordapp.com https://unity.com https://unity.com https://unity.com https://unity.com;"
         },
         {
           "key": "Access-Control-Allow-Origin",
