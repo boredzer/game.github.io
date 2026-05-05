@@ -2,29 +2,6 @@
 <html>
 
 <head>
-  <!-- index.html ของ WebGL build -->
-  <script src="https://discord.com/app-managers/sdk.js"></script>
-  <script>
-    const { DiscordSDK } = DiscordSDK;
-
-    // Patch URLs ทั้งหมดก่อนที่ Unity จะโหลด
-    window.discordSdk = new DiscordSDK(1499862278487539722);
-
-    window.discordSdk.commands.patchUrlMappings([
-      {
-        prefix: '/unity-auth',
-        target: 'player-auth.services.api.unity.com'
-      },
-      {
-        prefix: '/unity-relay',
-        target: 'relay-allocations.services.api.unity.com'
-      },
-      {
-        prefix: '/unity-multi',
-        target: 'multiplay.services.api.unity.com'
-      }
-    ]);
-  </script>
   <style>
     html,
     :root {
